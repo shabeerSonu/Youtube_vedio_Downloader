@@ -1,0 +1,91 @@
+<MyLayout>:
+    orientation: "vertical"
+    canvas.before:
+        Color:
+            rgba: 0.2, 0.2, 0.2, 1  # Dark grey color (red, green, blue, alpha)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    padding: 10
+
+
+    Image:
+        id: image_widget
+        source: "YouTube-Logo.wine.png"
+        size_hint: (0.8, 0.8)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: None
+        height: 150
+
+        Label:
+            id: label_widget1
+            text: "Video Downloader"
+            font_size: 80
+            size_hint_x: 0.5
+
+    GridLayout:
+        cols: 2
+        row_default_height: 50
+        row_force_default: True
+        size_hint_y: None
+        height: 80
+
+        Label:
+            id: label_widget2
+            text: "Link:"
+            font_size: 30
+
+
+        TextInput:
+            id: text_input
+            font_size: 24
+            size_hint_y: None
+            height: 48
+            size_hint_x: None
+            width: 730
+
+    GridLayout:
+        cols: 4
+        row_default_height: 60
+        row_force_default: True
+        size_hint_y: None
+        height: 120
+
+        Label:
+            id: label_widget3
+            text: "Format"
+            font_size: 30
+
+        Spinner:
+            id: spinner_f
+            text: "Format"
+            values: "Mp4", "Mp3"
+            on_text: root.spinner_clicked(spinner_f.text)
+
+        Label:
+            id: label_widget4
+            text: "Quality"
+            font_size: 30
+
+        Spinner:
+            id: spinner_q
+            text: "Quality"
+            values: "720p", "360p"
+            on_text: root.spinner_quality(spinner_q.text)
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: 70
+
+        Button:
+            text: "Download"
+            size_hint_y: None
+            height: 70
+            on_release: root.video_downloader()
+            size_hint_x: 0.5
+            pos_hint: {"center_x": 0.5}
+
